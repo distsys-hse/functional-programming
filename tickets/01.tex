@@ -1,0 +1,16 @@
+\section{\texorpdfstring{$\lambda$}{}-термы. \texorpdfstring{$\beta$}{}-редукция.}
+
+
+\begin{definition}[$\lambda$-термы]
+это выражения, строящиеся из переменных путём применения операций:
+\begin{itemize}
+    \item Если $x$ --- переменная, то $x$ --- терм.
+    \item Применение: $u$ и $v$ --- термы, то $(uv)$ --- терм.
+    \item $\lambda$-абстракция: $u$ --- терм, $x$ --- переменная, то $(\lambda x.u)$ --- терм.
+\end{itemize}
+\end{definition}
+
+\begin{definition}[$\beta$-редукция]
+$(\lambda x.u)v \rightarrow_\beta u[x := v]$, то есть подстановка $v$ вместо свободных $x$ в $u$.
+При корректной подстановке ранее свободные переменные не становятся связанными.
+\end{definition}

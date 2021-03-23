@@ -1,0 +1,53 @@
+\section{Система типов Хиндли–Милнера. Let-полиморфизм.}
+
+
+В предыдущих пунктах $\lambda_{\to}$ не позволяла адекватно реализовать полиморфизм, а F не имела наиболее общего типа.
+Система типов Хиндли–Милнера является чем-то <<между>> двумя системами выше.
+По сути в F добавили ограничение + let in.
+
+\begin{definition}[Система типов Хиндли–Милнера]
+система типов поверх $\lambda$-исчисления.
+
+Типы --- безкванторный (мономорфные) типы $\lambda_{\to}$ и типы $\forall r_1. \forall r_2. \ldots .\forall r_k .A$, где $A$ -- мономорфный тип.
+$\lambda$-абстракция разрешена только для мономорфных типов.
+\end{definition}
+
+Также система Х-М вводит новый конструктор термов \textbf{let in}, например \textbf{let} x = v \textbf{in} u, и редукцию \textbf{let} x = v \textbf{in} u $\to$ u [x := v].
+Без типов это равносильно $(\lambda x.u)v$ (в типах в let у $x$ может быть полиморфный тип).
+
+
+Правила типизации
+
+\[
+\frac{}{\Gamma, x:A \vdash x:A} Ax;
+\frac{\Gamma \vdash u : (A \to B)~\Gamma \vdash v : A}{\Gamma \vdash (uv):B} App;
+\]
+
+\[
+\frac{\Gamma, x:A \vdash u:B}{\Gamma \vdash (\lambda x.u) : (A \to B)} Abs \text{ -- только для безкванторного типа } A;
+\]
+
+\[
+\frac{\Gamma \vdash v : A ~ \Gamma, x : A \vdash u : B}{\Gamma \vdash (\text{\textbf{let} x = v \textbf{in} u}) : B} Let
+\]
+
+\[
+\frac{\Gamma \vdash u : A}{\Gamma \vdash u : (\forall r.A)} Gen;
+\frac{\Gamma \vdash u : (\forall r.B)}{\Gamma \vdash u : B[r := A]} Inst \text{ -- если подстановка корректна } A;
+\]
+
+
+\begin{example}
+$\lambda f. (f true, f 0)$ не типизируется, т.к. $f$ --- мономорфный.
+
+$let f = \lambda x. x in (f true, f 0)$ типизируется.
+
+\end{example}
+
+\begin{important}
+В системе Х-М у типизируемого терма существует наиболее общий тип, а задача его нахождения разрешима.
+\end{important}
+
+\begin{important}
+Система типов Haskell является расширенной системой типов Хиндли–Милнера (Алг. типы, классы типов, рекурсивный let).
+\end{important}

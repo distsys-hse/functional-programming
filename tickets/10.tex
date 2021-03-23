@@ -1,0 +1,40 @@
+\section{Исчисление типизации \texorpdfstring{$\lambda 2$}{} (система F). Пример типизуемого терма, не имеющего наиболее общего типа.}
+
+\begin{definition}[Система F]
+система типов поверх $\lambda$-исчисления.
+
+Типы получаются из базовых конструкциями $A \to B$ и $\forall r.A$.
+\end{definition}
+
+Правила типизации
+
+\[
+\frac{}{\Gamma, x:A \vdash x:A} Ax;
+\frac{\Gamma, x:A \vdash u:B}{\Gamma \vdash (\lambda x.u) : (A \to B)} Abs;
+\frac{\Gamma \vdash u : (A \to B)~\Gamma \vdash v : A}{\Gamma \vdash (uv):B} App;
+\]
+
+\[
+\frac{\Gamma \vdash u : A}{\Gamma \vdash u : (\forall r.A)} Gen;
+\frac{\Gamma \vdash u : (\forall r.B)}{\Gamma \vdash u : B[r := A]} Inst;
+\]
+
+\begin{important}
+Позволяет применить функцию к себе \(x : \forall r.(r \to r) \vdash (xx) : \forall r.(r \to r) \), но все еще все типизируемые термы обладают свойством сильной нормализуемости, а следовательно $\Omega = (\lambda x. (xx))(\lambda x. (xx))$ не типизируем.
+\end{important}
+
+\begin{example}
+Рассмотрим терм $\lambda x. (xx)$.
+
+У него есть две несравнимых типизации:
+$(\forall r. (r \to r)) \to (\forall r. (r \to r))$ и $(\forall r. ((r \to r) \to (r \to r))) \to (\forall r. ((r \to r) \to (r \to r)))$.
+Например, $\lambda f . \lambda g . \lambda x . f g x$ имеет тип 2, но не тип 1.
+Функция $\lambda f. \lambda z . (\lambda x z. z) (f 0)$ --  наоборот.
+Следовательно у терма нет наиболее общего типа в системе F.
+
+
+%Для функции $\lambda f . \lambda x . f(f(x))$. Тип $(\forall r. (r \to r))$ не подходит, а $(\forall r. ((r \to r) \to (r \to r)))$ подходит.
+\end{example}
+
+
+Задача типизации в системе F алгоритмически неразрешима.

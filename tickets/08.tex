@@ -1,0 +1,47 @@
+\section{Контекст типизации. Понятие наиболее общего типа для терма \texorpdfstring{$u$}{} в контексте \texorpdfstring{$\Gamma$}{}. Примеры: комбинаторы \texorpdfstring{$\B$}{} и \texorpdfstring{$\K$}{}.}
+
+\begin{definition}[Контекст]
+множество $x_i:A_i$, т.е. присвоений типов для свободных переменных.
+\end{definition}
+
+%Переменные по типам поделим на константные (в лекции <<неизменяемые>>) $p_1, \ldots$ и остальные $r_1 \ldots$.
+
+\begin{definition}[B$\sigma$]
+применение подстановки $\sigma = [r_1 := A_1, \ldots]$ к типу $B$.
+
+Тип $B$ --- более общий, а $B\sigma$ --- более конкретный.
+\end{definition}
+
+\begin{definition}[$B_0$]
+наиболее общий тип для $u_0$ в контексте $\Gamma_0$, если:
+\begin{enumerate}
+    \item $\Gamma_o \vdash u_0 : B_0$;
+    \item $\Gamma_o \vdash u_0 : B \Rightarrow \exists \sigma : B = B_0 \sigma$.
+\end{enumerate}
+\end{definition}
+
+
+\begin{theorem}
+Для любых $\Gamma_0$ и $u_0$ либо существует наиболее общий тип для $u_0$ контексте $\Gamma_0$, либо $u_0$ не типизуем в контексте $\Gamma_0$.
+\end{theorem}
+
+\begin{corollary}
+Задача выведения типов = задача поиска наиболее общего типа.
+\end{corollary}
+
+
+\begin{definition}[Комбинатор]
+замкнутые (без свободных переменных) термы чистого $\lambda$-исчисления.
+\end{definition}
+
+Комбинатор $B = \lambda fgx. f(gx)$. 
+НОТ: $(B \to A) \to ((C \to B) \to (C \to A))$.
+
+Комбинатор $K = \lambda x . \lambda y . x$.
+НОТ: $A \to (B \to A)$.
+
+Подходят $\Char \to (\Bool \to \Char)$, $(\Int \to \Bool) \to (\Char \to (\Int \to \Bool))$, $\ldots$
+
+\textcolor{red}{Проверьте. Я не совсем понял, что от нас хотят услышать про комбинаторы.}
+
+

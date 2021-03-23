@@ -1,0 +1,8 @@
+### Global ###
+## Directories
+*.log
+*.out
+
+## Files
+.DS_Store
+

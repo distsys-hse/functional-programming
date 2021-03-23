@@ -1,0 +1,156 @@
+%% Поддержка русского языка
+\usepackage{cmap}                   % Поиск по кириллице
+\usepackage{mathtext}               % Кириллица в формулах
+\usepackage[T1,T2A]{fontenc}        % Кодировки шрифтов
+\usepackage[utf8]{inputenc}         % Кодировка текста
+\usepackage[english,russian]{babel} % Подключение поддержки языков
+
+%% Отступы между абзацами и в начале абзаца
+\setlength{\parindent}{15pt}
+\setlength{\parskip}{\medskipamount}
+\newcommand{\hquad}{\hspace{0.5em}} 
+
+%% Размеры полей страниц
+\usepackage[top=0.75in, bottom=0.75in, left=0.425in, right=0.55in]{geometry}
+
+% Переносы слов по строкам
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
+
+% Ссылки
+\usepackage[hidelinks]{hyperref} 
+
+%% Графика
+\usepackage[pdftex]{graphicx}
+\graphicspath{
+    {images/}
+}
+\usepackage{float}
+\usepackage{stackengine}
+\usepackage{mathtools}
+\usepackage{tikz}               % Рисование всего
+\usetikzlibrary{arrows.meta}
+\usepackage{pgfplots}           % Графики
+\pgfplotsset{compat=1.17}
+\usetikzlibrary{calc, matrix, intersections, fit}
+
+%% Математические пакеты
+\usepackage{mathtools}          % Тот же amsmath, только с некоторыми поправками
+\usepackage{amssymb}            % Математические символы
+\usepackage{amsthm}             % Оформление теорем
+\usepackage{amstext}            % Текстовые вставки в формулы
+\usepackage{amsfonts}           % Математические шрифты
+\usepackage{icomma}             % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+\usepackage{enumitem}           % Для выравнивания itemize (\begin{itemize}[align=left])
+\usepackage{array}              % Таблицы и матрицы
+\usepackage{multirow}
+\usepackage{nicefrac}
+\usepackage{eqlist}
+
+%% Шрифты
+\usepackage{euscript}       % Шрифт Евклид
+\usepackage{mathrsfs}       % \mathscr{}
+
+%% Прочие пакеты
+\usepackage{indentfirst}                    % Красная строка в начале текста
+\usepackage{epigraph}                       % Эпиграфы
+\usepackage{fancybox,fancyhdr}              % Колонтитулы
+\usepackage{titlesec}                       % Изменение формата заголовков
+\usepackage{tocloft}						% Изменение формата содержания
+\usepackage[normalem]{ulem}                 % Для зачёркиваний
+\usepackage[makeroom]{cancel}               % И снова зачёркивание (на этот раз косое)
+\usepackage{subfiles}						% \subfile
+
+%% Прочее
+\mathtoolsset{showonlyrefs=true}        % Показывать номера только у тех формул,
+% на которые есть \eqref{} в тексте.
+\renewcommand{\headrulewidth}{1.8pt}    % Изменяем размер верхнего отступа колонтитула
+\renewcommand{\footrulewidth}{0.0pt}    % Изменяем размер нижнего отступа колонтитула
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\D}{\mathbb{D}}
+\renewcommand{\C}{\mathbb{C}}
+\renewcommand{\P}{\mathbb{P}}
+\renewcommand{\L}{\mathscr{L}}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\phi}{\varphi}
+\renewcommand{\qedsymbol}{\textbf{[:|||:]}}
+\newcommand{\e}{\mathbb{e}}
+\renewcommand{\l}{\lambda}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Y}{\mathbf{Y}}
+\newcommand{\B}{\mathbf{B}}
+\newcommand{\K}{\mathbf{K}}
+
+\DeclareRobustCommand{\bbone}{\text{\usefont{U}{bbold}{m}{n}1}}
+\DeclareMathOperator{\EX}{\mathbb{E}}% expected value
+
+\newtheoremstyle{FpTheorem}%
+  {\topsep}     % Space above
+  {\topsep}     % Space below
+  {\normalfont} % Body font
+  {0pt}         % Indent
+  {\bfseries}   % Theorem head font
+  {}           % Punctuation after theorem head
+  {5pt plus 1pt minus 1pt} % HEADSPACE
+  {\thmname{#1}.\thmnote{ #3}} % Theorem head spec
+
+\newtheoremstyle{FpDefinition}%
+  {\topsep}     % Space above
+  {\topsep}     % Space below
+  {\normalfont} % Body font
+  {0pt}         % Indent
+  {\bfseries}   % Theorem head font
+  {}           % Punctuation after theorem head
+  {5pt plus 1pt minus 1pt} % HEADSPACE
+  {\thmname{#1}: \thmnote{#3} --} % Theorem head spec
+
+\newtheoremstyle{FpImportant}%
+  {\topsep}     % Space above
+  {\topsep}     % Space below
+  {\normalfont} % Body font
+  {0pt}         % Indent
+  {\bfseries}   % Theorem head font
+  {}           % Punctuation after theorem head
+  {5pt plus 1pt minus 1pt} % HEADSPACE
+  {\thmname{#1}} % Theorem head spec
+
+\makeatletter
+    % Обычный (не italic) шрифт внутри определений и похожих вещей
+    \def\th@plain{%
+      \thm@notefont{}% same as heading font
+      \normalfont % body font
+    }
+\makeatother
+
+% Теоремы, определения, следствия, примеры и утверждения
+\theoremstyle{FpTheorem}
+\newtheorem*{theorem}{Th}
+
+\theoremstyle{FpDefinition}
+\newtheorem*{definition}{Def}
+
+\theoremstyle{plain}
+\newtheorem*{corollary}{Cor}
+\newtheorem*{example}{Ex}
+\newtheorem*{statement}{St}
+
+\theoremstyle{FpImportant}
+\newtheorem*{important}{Imp!}
+
+% Индикатор
+\newcommand{\Ind}{\operatorname{Ind}}
+
+% Косые <=, >=
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\leq}{\leqslant}
+
+% Haskell types
+\newcommand{\Bool}{\operatorname{Bool}}
+\newcommand{\Char}{\operatorname{Char}}
+\newcommand{\Int}{\operatorname{Int}}

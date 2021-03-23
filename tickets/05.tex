@@ -1,0 +1,37 @@
+\section{Комбинаторы неподвижной точки, пример: комбинатор \texorpdfstring{$\Y$}{}.}
+
+Для достижения полноты по Тьюрингу требуется рекурсия.
+Мы не хотим, чтобы функция определялась через саму себя, поэтому требуется комбинатор неподвижной точки.
+
+\begin{definition}[Неподвижная точка функции $f$]
+такой терм $F$, что для функции $f$ выполнено $F =_\beta f F$.
+\end{definition}
+
+Символ $=_\beta$ означает $\beta$-эквивалентность – $a =_\beta b$, если $\exists c : a \to_\beta c \land b \to_\beta c$
+
+\begin{definition}[Комбинатор неподвижной точки]
+функция высшего порядка, вычисляющая неподвижную точку другой функции.
+\end{definition}
+
+\begin{example}[$\Y$-комбинатор]
+Основное свойство $\Y f =_\beta f(\Y f)$.
+\begin{align}
+    \Y = \lambda f.\left((\lambda x. f(xx)) (\lambda x. f(xx))\right)
+\end{align}
+\end{example}
+
+\begin{important} 
+Функция с $\Y$ комбинатором не может быть сильно нормализуемой, поэтому важна нормальная стратегия из вопроса 4.
+\end{important}
+
+\begin{example} 
+Факториал можно выразить следующим образом:
+\begin{align}
+    \operatorname{Fact} = \Y \left( \lambda g . \lambda x . (
+        \text{if Zero } x 
+        \text{ then } 1 
+        \text{ else } (g(\text{Prev } x) \cdot x)\right)
+    ),
+\end{align}
+где Zero -- проверка на $0$, а Prev -- предыдущее число (тут используются нумералы Чёрча).
+\end{example}

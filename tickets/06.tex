@@ -1,0 +1,29 @@
+\section{Слабая головная нормальная форма.}
+
+\begin{definition}[Слабая головная нормальная форма (WHNF)]
+это терм вида:
+\begin{enumerate}
+    \item $\lambda x. u$;
+    \item $x v_1 v_2 \ldots v_n$, где $x$ --- переменная, а $v_1 \dots v_n$ – термы.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}[thunk]
+недоредуцированный редекс.
+\end{definition}
+
+\begin{important}
+Всякая НФ является СГНФ, но не наоборот.
+\end{important}
+
+\begin{important}
+В Haskell понятие СГНФ отличается.
+\end{important}
+
+\begin{important}
+СГНФ не вычисляет то, что может не пригодиться (в отличие от НФ):
+\begin{enumerate}
+    \item функцию, которая еще не применена ($\lambda$ снаружи);
+    \item переменные обозначающие неизвестные функции.
+\end{enumerate}
+\end{important}
